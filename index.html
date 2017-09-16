@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+				.Balloon{
+				width:96px;height:122px;
+				position:absolute;
+				background-image:url(img/balloon.png);
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			function f(m,n){
+				var r1=Math.random();
+				var r2=(n-m+1)*r1;
+				var r3=m+r2;
+				var r4=Math.floor(r3);
+				return r4;
+			}
+			var markList={
+				'1':'0px 0px',
+				'2':'-96px 0px',
+				'3':'-192px 0px',
+				'4':'-288px 0px',
+				'5':'0px -122px',
+				'6':'-96px -122px',
+				'7':'-192px -122px',
+				'8':'-288px -122px',				
+			}
+			function Balloon(){
+				this.mark=f(1,8);//分值
+				this.speed=this.mark;//速度
+				this.ele=document.createElement('div');
+				this.ele.className='Balloon';
+				var that=this;
+				this.ele.addEventListener('click',function(){
+					console.log('气球被点击了',that.mark);
+//					that.blow();
+				})
+//				this.x=f(0,document.body.offsetWidth-96);
+//				this.y=document.body.offsetHeight+2*122;
+//				this.ele.style.left=this.x+'px';
+//				this.ele.style.top=this.y+'px';
+				this.ele.style.backgroundPosition=markList[this.mark];//位置值
+				document.body.appendChild(this.ele);
+			}
+			var b1=new Balloon();
+		</script>
+	</body>
+</html>
